@@ -1,0 +1,172 @@
+import React, { isValidElement, useId } from 'react';
+
+
+const Input = React.forwardRef(
+  (
+    {
+      asChild,
+      invalid,
+      'aria-describedby': ariaDescribedby,
+      'aria-errormessage': areaErrorMessage,
+      id,
+      value,
+      errorId,
+      disabled,
+      hasStartIcon,
+      hasEndIcon,
+      ...props
+    },
+    ref,
+  ) => {
+    const Element = 'input';
+
+    return (
+      <Element
+        {...props}
+        ref={ref}
+        disabled={disabled}
+        className={`block h-full w-full border-0 bg-transparent p-0 py-3.5 text-gray-900 outline-none placeholder:text-gray-300 focus:ring-0 sm:text-sm ${
+          hasStartIcon ? 'pl-9' : 'pl-4'
+        }
+       ${hasEndIcon ? 'pr-9' : 'pr-4'}
+      `}
+        aria-describedby={ariaDescribedby}
+        aria-invalid={invalid}
+        id={id}
+        value={value}
+        aria-errormessage={areaErrorMessage}
+      />
+    );
+  },
+);
+
+
+const TextFieldDescription = ({
+  description,
+  id,
+  visuallyShow,
+}) => {
+  return description ? (
+    <p
+      id={id}
+      className={visuallyShow ? 'sr-only' : 'text-light-100 text-base'}
+    >
+      {description}
+    </p>
+  ) : null;
+};
+
+
+const TextFieldLabel = ({ label, textFieldId }) => {
+  return label ? (
+    <label
+      htmlFor={textFieldId}
+      className="absolute -top-2 left-2 -mt-px inline-block bg-white px-1 text-xs font-medium text-gray-900"
+    >
+      {label}
+    </label>
+  ) : null;
+};
+
+const TextFieldErrorMessage = ({ id, message }) => {
+  return (
+    <span id={id} className="ml-3 text-base text-red-600">
+      {message}
+    </span>
+  );
+};
+
+export const TextArea = React.forwardRef(
+  ({ ...props }, ref) => {
+    return (
+      <textarea
+        ref={ref}
+        className="relative mt-6 h-28 w-full rounded-lg border border-gray-100 py-3.5 pl-4 shadow-sm outline-none focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-indigo-600"
+        {...props}
+      />
+    );
+  },
+);
+
+export const TextField = React.forwardRef(
+  (
+    {
+      description,
+      invalid,
+      errorMessage,
+      asChild,
+      label,
+      value,
+      StartIcon,
+      EndIcon,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
+    const id = useId();
+    const descriptionId = `textField-description-${id}`;
+    const errorId = `textField-error-${id}`;
+    const textFieldId = `textField-${id}`;
+
+    return (
+      <div
+        className={`relative h-[3.5rem] rounded-lg border border-gray-100 shadow-sm focus-within:ring-indigo-600 focus:border-indigo-600 focus:ring-1 ${
+          invalid
+            ? 'border border-red-600 bg-red-700 bg-opacity-5 hover:bg-red-500'
+            : 'background-gray-100 border border-gray-100'
+        } ${className}`}
+      >
+        <TextFieldLabel label={label} textFieldId={textFieldId} />
+
+        <div className="relative h-full w-full">
+          {StartIcon ? (
+            <StartIcon
+              className="absolute left-[10px] top-1/2 w-5 -translate-y-1/2 text-gray-300"
+              aria-label="start icon"
+            />
+          ) : null}
+
+          <Input
+            {...props}
+            ref={ref}
+            value={value}
+            asChild={asChild}
+            invalid={invalid}
+            aria-describedby={`${descriptionId}`}
+            aria-errormessage={invalid ? errorId : undefined}
+            id={textFieldId}
+            errorId={errorId}
+            hasStartIcon={Boolean(StartIcon)}
+            hasEndIcon={Boolean(EndIcon)}
+          />
+
+          {EndIcon && !isValidElement(EndIcon) ? (
+            <EndIcon
+              aria-label="end icon"
+              className="absolute right-[18px] top-1/2 -translate-y-1/2"
+            />
+          ) : null}
+
+          {EndIcon && isValidElement(EndIcon) ? (
+            <span className="absolute right-[18px] top-1/2 -translate-y-1/2">
+              {EndIcon}
+            </span>
+          ) : null}
+        </div>
+
+        <div className="mt-2 flex h-[10px] justify-between">
+          {invalid && errorMessage ? (
+            <TextFieldErrorMessage message={errorMessage} id={errorId} />
+          ) : null}
+
+          <TextFieldDescription
+            id={descriptionId}
+            description={description}
+            visuallyShow={errorMessage ? invalid : undefined}
+          />
+        </div>
+      </div>
+    );
+  },
+);
