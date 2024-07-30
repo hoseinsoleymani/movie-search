@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import React from 'react';
 
-import type { SearchMoviesResponse } from '../../queries';
+import type { SearchMoviesResponse } from '../../mutations';
 import { Card } from '../ui-kit/Card/Card';
 
 const Movie = ({

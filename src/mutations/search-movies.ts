@@ -30,7 +30,7 @@ const searchMovies = async (search: string) => {
   const response = await api.get<SearchMoviesResponse>('', {
     params: {
       query: search,
-      include_adult: 'true',
+      include_adult: 'false',
       language: 'en',
       page: '1',
     },
@@ -40,7 +40,7 @@ const searchMovies = async (search: string) => {
 };
 
 export const useSearchMovies = (searchValue: string) =>
-  useMutation<SearchMoviesResponse, ErrorSearchMovies>({
+  useMutation<SearchMoviesResponse>({
     mutationKey: ['movies'],
     mutationFn: () => searchMovies(searchValue),
   });

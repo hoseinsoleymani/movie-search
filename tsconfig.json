@@ -19,19 +19,18 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "paths": {
-      "@/*":["./src/*"],
-      "cypress/*":["./cypress/*"]
-    },
     "types": [
       "cypress",
       "@testing-library/cypress",
-      "node"
+      "node",
+      "jest",
+      "@testing-library/jest-dom"
     ]
   },
   "include": [
     "src",
     "cypress",
+    "src/globals.d.ts",
     "cypress.config.ts",
     ".eslintrc.js",
     "@testing-library/cypress",

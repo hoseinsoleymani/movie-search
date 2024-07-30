@@ -2,8 +2,8 @@ import type { UseMutateFunction } from '@tanstack/react-query';
 import type { Dispatch, PropsWithChildren, SetStateAction } from 'react';
 import React, { useContext, useMemo, useState } from 'react';
 
-import type { ErrorSearchMovies, SearchMoviesResponse } from '../queries';
-import { useSearchMovies } from '../queries';
+import type { ErrorSearchMovies, SearchMoviesResponse } from '../mutations';
+import { useSearchMovies } from '../mutations';
 
 interface SearchMoviesContextProps {
   searchValue: string;

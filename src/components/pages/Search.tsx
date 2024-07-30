@@ -10,6 +10,7 @@ export const Search = () => {
 
   const submitForm = (e: FormEvent) => {
     e.preventDefault();
+    if (!searchValue) return;
 
     searchMovies();
   };

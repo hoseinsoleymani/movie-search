@@ -1,5 +1,5 @@
 import React from 'react';
 
 export const Loading = () => {
-  return <div className="pt-20 text-center text-4xl">loading...</div>;
+  return <div aria-label='loading' className="pt-20 text-center text-4xl">loading...</div>;
 };
