@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Movies, Search } from './components';
+import { Loading, Movies, Search } from './components';
 import { useSearchContext } from './provider';
 
 const MovieSearchPage = () => {
-  const { movies, status } = useSearchContext();
+  const { movies, status, searchValue } = useSearchContext();
 
   return (
     <>
@@ -15,9 +15,13 @@ const MovieSearchPage = () => {
       </header>
 
       {status === 'pending' ? (
-        <h1>loading...</h1>
+        <Loading />
       ) : !movies?.results ? (
-        <h1>search something...</h1>
+        <h1 className="pt-20 text-center text-4xl">search something...</h1>
+      ) : movies.results.length === 0 &&
+        searchValue &&
+        !(status === 'error') ? (
+        <h1 className="pt-20 text-center text-4xl">There isn't any thing</h1>
       ) : (
         <main className="pt-12">
           <section className="container mx-auto">

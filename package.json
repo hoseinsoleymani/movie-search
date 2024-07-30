@@ -8,6 +8,7 @@
     "build": "webpack --mode production",
     "start": "webpack serve --mode development",
     "test": "jest --watch",
+    "cypress:component": "cypress open",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "keywords": [],
@@ -30,6 +31,7 @@
     "@types/node": "^22.0.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@types/testing-library__cypress": "^5.0.13",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "autoprefixer": "^10.4.19",
