@@ -1,4 +1,16 @@
+import { Slot } from '@radix-ui/react-slot';
+import type { ButtonHTMLAttributes } from 'react';
+import React from "react";
 import { mergeClassNames } from '../../../helpers';
+
+type ButtonVariant = 'outlined' | 'primary' | 'secondary';
+
+export interface ButtonProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'> {
+  asChild?: boolean;
+  variant?: ButtonVariant;
+  disabled?: boolean;
+}
 
 export const Button = ({
   asChild,
@@ -6,8 +18,8 @@ export const Button = ({
   variant = 'primary',
   className,
   ...props
-}) => {
-  const Element = 'button';
+}: ButtonProps) => {
+  const Element = asChild ? Slot : 'button';
 
   return (
     <div className={`${getButtonParentClassNames(variant)}`}>
@@ -21,11 +33,11 @@ export const Button = ({
 };
 
 function getButtonClassNames(
-  variant,
-  disabled
+  variant: 'outlined' | 'primary' | 'secondary' | undefined,
+  disabled: boolean | undefined,
 ) {
   return mergeClassNames({
-    'rounded-lg text-sm flex justify-center w-full items-center h-[2rem] md:h-[3rem] w-full px-8 transition-all font-normal whitespace-nowrap shadow-[0_8px_16px_0px_#6264F03D]':
+    'rounded-lg text-sm flex justify-center items-center h-[2rem] md:h-[3rem] px-8 transition-all font-normal whitespace-nowrap shadow-[0_8px_16px_0px_#6264F03D]':
       true,
     'text-white bg-primary-100 hover:bg-transparent hover:text-primary-100 hover:border-primary-100 border-2':
       variant === 'primary',
@@ -38,10 +50,10 @@ function getButtonClassNames(
 }
 
 function getButtonParentClassNames(
-  variant
+  variant: 'outlined' | 'primary' | 'secondary' | undefined,
 ) {
   return mergeClassNames({
-    'relative transition-all w-full': true,
+    'relative transition-all': true,
     '[&>svg]:hover:text-primary-100': variant === 'primary',
     '[&>svg]:hover:text-primary-300': variant === 'secondary',
   });

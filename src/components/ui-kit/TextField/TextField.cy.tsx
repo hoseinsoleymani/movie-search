@@ -1,10 +1,12 @@
+import React from "react";
 import { BellAlertIcon } from '@heroicons/react/20/solid';
 import { PlusSmallIcon } from '@heroicons/react/24/outline';
+import type { PropsWithChildren } from 'react';
 import { useState } from 'react';
 
 import { TextArea, TextField } from './TextField';
 
-const Container = ({ children }) => {
+const Container = ({ children }: PropsWithChildren) => {
   return <div className="mx-auto w-64 py-64">{children}</div>;
 };
 
@@ -152,7 +154,7 @@ it('should can update value', () => {
   const Wrapper = () => {
     const [value, setValue] = useState('');
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setValue(e.target.value);
     };
 
@@ -388,7 +390,7 @@ it('should can update textarea value', () => {
   const Wrapper = () => {
     const [value, setValue] = useState('');
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setValue(e.target.value);
     };
 

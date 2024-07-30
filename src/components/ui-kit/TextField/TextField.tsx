@@ -1,7 +1,17 @@
+import { Slot } from '@radix-ui/react-slot';
+import type { InputHTMLAttributes, Ref } from 'react';
 import React, { isValidElement, useId } from 'react';
 
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  asChild?: boolean;
+  invalid?: boolean;
+  errorId: string;
+  hasStartIcon?: boolean;
+  hasEndIcon?: boolean;
+  ref: Ref<any>;
+}
 
-const Input = React.forwardRef(
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       asChild,
@@ -18,8 +28,7 @@ const Input = React.forwardRef(
     },
     ref,
   ) => {
-    const Element = 'input';
-
+    const Element = asChild ? Slot : 'input';
     return (
       <Element
         {...props}
@@ -40,12 +49,17 @@ const Input = React.forwardRef(
   },
 );
 
+interface TextFieldDescriptionProps {
+  description?: string;
+  id: string;
+  visuallyShow: boolean | undefined;
+}
 
 const TextFieldDescription = ({
   description,
   id,
   visuallyShow,
-}) => {
+}: TextFieldDescriptionProps) => {
   return description ? (
     <p
       id={id}
@@ -56,8 +70,12 @@ const TextFieldDescription = ({
   ) : null;
 };
 
+interface TextFieldLabelProps {
+  label?: string;
+  textFieldId: string;
+}
 
-const TextFieldLabel = ({ label, textFieldId }) => {
+const TextFieldLabel = ({ label, textFieldId }: TextFieldLabelProps) => {
   return label ? (
     <label
       htmlFor={textFieldId}
@@ -68,7 +86,12 @@ const TextFieldLabel = ({ label, textFieldId }) => {
   ) : null;
 };
 
-const TextFieldErrorMessage = ({ id, message }) => {
+interface TextFieldErrorMessageProps {
+  id: string;
+  message?: string;
+}
+
+const TextFieldErrorMessage = ({ id, message }: TextFieldErrorMessageProps) => {
   return (
     <span id={id} className="ml-3 text-base text-red-600">
       {message}
@@ -76,7 +99,10 @@ const TextFieldErrorMessage = ({ id, message }) => {
   );
 };
 
-export const TextArea = React.forwardRef(
+interface TextAreaProps
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'id'> {}
+
+export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   ({ ...props }, ref) => {
     return (
       <textarea
@@ -88,7 +114,18 @@ export const TextArea = React.forwardRef(
   },
 );
 
-export const TextField = React.forwardRef(
+interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+  description?: string;
+  invalid?: boolean;
+  errorMessage?: string;
+  maxLength?: number;
+  label?: string;
+  StartIcon?: any;
+  EndIcon?: any;
+  asChild?: boolean;
+}
+
+export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   (
     {
       description,
@@ -111,7 +148,7 @@ export const TextField = React.forwardRef(
 
     return (
       <div
-        className={`relative h-[3.5rem] rounded-lg border border-gray-100 shadow-sm focus-within:ring-indigo-600 focus:border-indigo-600 focus:ring-1 ${
+        className={`relative h-[48px] rounded-lg border border-gray-100 shadow-sm focus-within:ring-indigo-600 focus:border-indigo-600 focus:ring-1 ${
           invalid
             ? 'border border-red-600 bg-red-700 bg-opacity-5 hover:bg-red-500'
             : 'background-gray-100 border border-gray-100'

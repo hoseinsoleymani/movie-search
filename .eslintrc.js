@@ -7,7 +7,13 @@ module.exports = init({
     auto: true,
     react: true,
     next: false,
+    typescript: {
+      parserProject: './tsconfig.json',
+      resolverProject: './tsconfig.json',
+    },
   },
+  parser: '@typescript-eslint/parser',
+
   rules: {
     'tailwindcss/no-custom-classname': 'warn',
     'import/extensions': 'off',
@@ -18,10 +24,16 @@ module.exports = init({
     '@typescript-eslint/await-thenable': 'warn',
   },
   settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
     'import/resolver': {
       node: {
         paths: ['src'],
         extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx'],
+      },
+      typescript: {
+        project: './tsconfig.json',
       },
       alias: {
         map: [['@', path.resolve(__dirname, './src')]],
@@ -31,5 +43,5 @@ module.exports = init({
   },
 
   extends: 'prettier',
-  plugins: ['prettier', 'import'],
+  plugins: ['prettier', 'import', '@typescript-eslint'],
 });
