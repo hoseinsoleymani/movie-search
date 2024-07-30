@@ -1,4 +1,4 @@
-import './commands';
+import './command';
 
 import { mount } from 'cypress/react18';
 
