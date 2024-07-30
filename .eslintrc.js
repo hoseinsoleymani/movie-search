@@ -8,20 +8,24 @@ module.exports = init({
     react: true,
     next: false,
     typescript: {
-      parserProject: './tsconfig.json',
-      resolverProject: './tsconfig.json',
+      parserProject: 'tsconfig.eslint.json',
+      resolverProject: 'tsconfig.json',
+      tsconfigRootDir: __dirname,
     },
   },
   parser: '@typescript-eslint/parser',
-
+  ignorePatterns: ['.eslintrc.js'],
   rules: {
-    'tailwindcss/no-custom-classname': 'warn',
-    'import/extensions': 'off',
+    'import/extensions': 'warn',
     'cypress/unsafe-to-chain-command': 'off',
     'cypress/no-force': 'off',
-    'import/no-extraneous-dependencies': 'warn',
+    'import/no-extraneous-dependencies': 'off',
     'import/no-self-import': 'warn',
     '@typescript-eslint/await-thenable': 'warn',
+    'react-hooks/exhaustive-deps': 'off',
+    'import/no-unresolved': 'off',
+    'react/function-component-definition': 'off',
+    '@typescript-eslint/no-misused-promises': 'off'
   },
   settings: {
     'import/parsers': {
@@ -33,15 +37,11 @@ module.exports = init({
         extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx'],
       },
       typescript: {
-        project: './tsconfig.json',
-      },
-      alias: {
-        map: [['@', path.resolve(__dirname, './src')]],
-        extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx'],
+        project: './tsconfig.eslint.json',
       },
     },
   },
 
-  extends: 'prettier',
-  plugins: ['prettier', 'import', '@typescript-eslint'],
+  extends: ['prettier'],
+  plugins: ['prettier'],
 });

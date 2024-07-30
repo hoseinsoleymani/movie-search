@@ -1,6 +1,7 @@
 import { Slot } from '@radix-ui/react-slot';
 import type { ButtonHTMLAttributes } from 'react';
-import React from "react";
+import React from 'react';
+
 import { mergeClassNames } from '../../../helpers';
 
 type ButtonVariant = 'outlined' | 'primary' | 'secondary';
@@ -22,7 +23,7 @@ export const Button = ({
   const Element = asChild ? Slot : 'button';
 
   return (
-    <div className={`${getButtonParentClassNames(variant)}`}>
+    <div className={getButtonParentClassNames(variant)}>
       <Element
         className={`${getButtonClassNames(variant, disabled)} ${className}`}
         disabled={disabled}

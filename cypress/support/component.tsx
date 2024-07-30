@@ -29,6 +29,4 @@ declare global {
   }
 }
 
-Cypress.Commands.add('render', (jsx, options) =>
-  mount(jsx, options),
-);
+Cypress.Commands.add('render', (jsx, options) => mount(jsx, options));

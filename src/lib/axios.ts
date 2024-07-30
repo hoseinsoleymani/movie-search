@@ -6,8 +6,8 @@ const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
-    Accept: "application/json",
-    Authorization: `Bearer ${process.env.API_KEY}`
+    Accept: 'application/json',
+    Authorization: `Bearer ${process.env.API_KEY ?? ''}`,
   },
 });
 

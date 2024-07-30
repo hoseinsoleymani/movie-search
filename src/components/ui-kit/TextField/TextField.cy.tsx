@@ -1,8 +1,7 @@
-import React from "react";
 import { BellAlertIcon } from '@heroicons/react/20/solid';
 import { PlusSmallIcon } from '@heroicons/react/24/outline';
 import type { PropsWithChildren } from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { TextArea, TextField } from './TextField';
 

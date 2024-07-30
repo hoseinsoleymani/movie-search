@@ -34,7 +34,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {...props}
         ref={ref}
         disabled={disabled}
-        className={`block h-full w-full border-0 bg-transparent p-0 py-3.5 text-gray-900 outline-none placeholder:text-gray-300 focus:ring-0 sm:text-sm ${
+        className={`block size-full border-0 bg-transparent p-0 py-3.5 text-gray-900 outline-none placeholder:text-gray-300 focus:ring-0 sm:text-sm ${
           hasStartIcon ? 'pl-9' : 'pl-4'
         }
        ${hasEndIcon ? 'pr-9' : 'pr-4'}
@@ -150,13 +150,13 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       <div
         className={`relative h-[48px] rounded-lg border border-gray-100 shadow-sm focus-within:ring-indigo-600 focus:border-indigo-600 focus:ring-1 ${
           invalid
-            ? 'border border-red-600 bg-red-700 bg-opacity-5 hover:bg-red-500'
-            : 'background-gray-100 border border-gray-100'
+            ? 'border border-red-600 bg-red-700 hover:bg-red-500'
+            : 'border border-gray-100 bg-gray-100'
         } ${className}`}
       >
         <TextFieldLabel label={label} textFieldId={textFieldId} />
 
-        <div className="relative h-full w-full">
+        <div className="relative size-full">
           {StartIcon ? (
             <StartIcon
               className="absolute left-[10px] top-1/2 w-5 -translate-y-1/2 text-gray-300"
@@ -170,7 +170,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             value={value}
             asChild={asChild}
             invalid={invalid}
-            aria-describedby={`${descriptionId}`}
+            aria-describedby={descriptionId}
             aria-errormessage={invalid ? errorId : undefined}
             id={textFieldId}
             errorId={errorId}

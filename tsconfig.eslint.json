@@ -4,5 +4,4 @@
     "composite": true
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js"],
-  "exclude": ["node_modules"]
 }

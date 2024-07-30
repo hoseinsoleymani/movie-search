@@ -34,7 +34,7 @@
     "cypress",
     "cypress.config.ts",
     ".eslintrc.js",
-    "node_modules/.pnpm/cypress@12.17.4/node_modules/cypress/types/cypress-global-vars.d.ts",
+    "@testing-library/cypress",
     "postcss.config.js"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]

@@ -2,11 +2,13 @@
   "name": "tdd-button",
   "version": "1.0.0",
   "description": "",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack serve --mode development",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "keywords": [],
   "author": "",
@@ -36,9 +38,10 @@
     "css-loader": "^7.1.2",
     "cypress": "^13.13.1",
     "dotenv-webpack": "^8.1.0",
-    "eslint": "^9.8.0",
+    "eslint": "8.45.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jest": "^28.6.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.9",
